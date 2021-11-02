@@ -9,6 +9,11 @@ AliYun RocketMQ Spring Book Edition
 The project follows the [Apache2.0 License](http://www.apache.org/licenses/)  
 The license is free. You can download the code, modify it as needed, and use it in your own projects  
 
+Important: all projects published by the author on GitHub are non-profit.  
+Since the author registered GitHub, so far, he hasn't made a penny.  
+Anyone who charges for the author's project is cheating you.  
+If you are cheated, I hope you can get the help of a lawyer. Good luck.  
+
 Support function:
 
 - [x] Three modes of sending ordinary messages: synchronous, asynchronous and one-way
