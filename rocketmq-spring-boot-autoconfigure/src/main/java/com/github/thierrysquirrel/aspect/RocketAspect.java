@@ -21,6 +21,7 @@ import com.github.thierrysquirrel.annotation.OrderMessage;
 import com.github.thierrysquirrel.annotation.RocketMessage;
 import com.github.thierrysquirrel.annotation.TransactionMessage;
 import com.github.thierrysquirrel.autoconfigure.RocketProperties;
+import com.github.thierrysquirrel.core.factory.ShardingKeyFactory;
 import com.github.thierrysquirrel.core.factory.StartDeliverTimeFactory;
 import com.github.thierrysquirrel.core.factory.ThreadPoolFactory;
 import com.github.thierrysquirrel.core.utils.AspectUtils;
@@ -50,70 +51,73 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Slf4j
 @Data
 public class RocketAspect implements ApplicationContextAware {
-	private Map<String, Object> consumerContainer;
-	private RocketProperties rocketProperties;
-	private ThreadPoolExecutor threadPoolExecutor;
-	private ApplicationContext applicationContext;
+    private Map<String, Object> consumerContainer;
+    private RocketProperties rocketProperties;
+    private ThreadPoolExecutor threadPoolExecutor;
+    private ApplicationContext applicationContext;
 
-	public RocketAspect(Map<String, Object> consumerContainer, RocketProperties rocketProperties) {
-		this.consumerContainer = consumerContainer;
-		this.rocketProperties = rocketProperties;
-		this.threadPoolExecutor = ThreadPoolFactory.createSendMessageThreadPoolExecutor(rocketProperties);
-	}
+    public RocketAspect(Map<String, Object> consumerContainer, RocketProperties rocketProperties) {
+        this.consumerContainer = consumerContainer;
+        this.rocketProperties = rocketProperties;
+        this.threadPoolExecutor = ThreadPoolFactory.createSendMessageThreadPoolExecutor (rocketProperties);
+    }
 
-	@Pointcut("@annotation(com.github.thierrysquirrel.annotation.CommonMessage)")
-	public void commonMessagePointcut() {
-		log.debug("Start sending CommonMessage");
-	}
+    @Pointcut("@annotation(com.github.thierrysquirrel.annotation.CommonMessage)")
+    public void commonMessagePointcut() {
+        log.debug ("Start sending CommonMessage");
+    }
 
-	@Pointcut("@annotation(com.github.thierrysquirrel.annotation.OrderMessage)")
-	public void orderMessagePointcut() {
-		log.debug("Start sending OrderMessage");
-	}
+    @Pointcut("@annotation(com.github.thierrysquirrel.annotation.OrderMessage)")
+    public void orderMessagePointcut() {
+        log.debug ("Start sending OrderMessage");
+    }
 
-	@Pointcut("@annotation(com.github.thierrysquirrel.annotation.TransactionMessage)")
-	public void transactionMessagePointcut() {
-		log.debug("Start sending TransactionMessage");
-	}
+    @Pointcut("@annotation(com.github.thierrysquirrel.annotation.TransactionMessage)")
+    public void transactionMessagePointcut() {
+        log.debug ("Start sending TransactionMessage");
+    }
 
-	@Around("commonMessagePointcut()")
-	public Object rockerMessageSend(ProceedingJoinPoint point) throws Throwable {
-		return InterceptRocket.intercept(
-				StartDeliverTimeFactory.getStartDeliverTime(point.getArgs(),AspectUtils.getParams(point)),
-				AspectUtils.getDeclaringClassAnnotation(point, RocketMessage.class),
-				AspectUtils.getAnnotation(point, CommonMessage.class),
-				point.proceed(),
-				consumerContainer,
-				threadPoolExecutor,
-				applicationContext);
-	}
+    @Around("commonMessagePointcut()")
+    public Object rockerMessageSend(ProceedingJoinPoint point) throws Throwable {
+        return InterceptRocket.intercept (
+                StartDeliverTimeFactory.getStartDeliverTime (point.getArgs (), AspectUtils.getParams (point)),
+                ShardingKeyFactory.getShardingKeyFactory (point.getArgs (), AspectUtils.getParams (point)),
+                AspectUtils.getDeclaringClassAnnotation (point, RocketMessage.class),
+                AspectUtils.getAnnotation (point, CommonMessage.class),
+                point.proceed (),
+                consumerContainer,
+                threadPoolExecutor,
+                applicationContext);
+    }
 
-	@Around("orderMessagePointcut()")
-	public Object orderMessageSend(ProceedingJoinPoint point) throws Throwable {
-		return InterceptRocket.intercept(
-				StartDeliverTimeFactory.getStartDeliverTime(point.getArgs(),AspectUtils.getParams(point)),
-				AspectUtils.getDeclaringClassAnnotation(point, RocketMessage.class),
-				AspectUtils.getAnnotation(point, OrderMessage.class),
-				point.proceed(),
-				consumerContainer,
-				threadPoolExecutor,
-				applicationContext);
-	}
+    @Around("orderMessagePointcut()")
+    public Object orderMessageSend(ProceedingJoinPoint point) throws Throwable {
+        return InterceptRocket.intercept (
+                StartDeliverTimeFactory.getStartDeliverTime (point.getArgs (), AspectUtils.getParams (point)),
+                ShardingKeyFactory.getShardingKeyFactory (point.getArgs (), AspectUtils.getParams (point)),
+                AspectUtils.getDeclaringClassAnnotation (point, RocketMessage.class),
+                AspectUtils.getAnnotation (point, OrderMessage.class),
+                point.proceed (),
+                consumerContainer,
+                threadPoolExecutor,
+                applicationContext);
+    }
 
-	@Around("transactionMessagePointcut()")
-	public Object transactionMessageSend(ProceedingJoinPoint point) throws Throwable {
-		return InterceptRocket.intercept(
-				StartDeliverTimeFactory.getStartDeliverTime(point.getArgs(),AspectUtils.getParams(point)),
-				AspectUtils.getDeclaringClassAnnotation(point, RocketMessage.class),
-				AspectUtils.getAnnotation(point, TransactionMessage.class),
-				point.proceed(),
-				consumerContainer,
-				threadPoolExecutor,
-				applicationContext);
-	}
+    @Around("transactionMessagePointcut()")
+    public Object transactionMessageSend(ProceedingJoinPoint point) throws Throwable {
+        return InterceptRocket.intercept (
+                StartDeliverTimeFactory.getStartDeliverTime (point.getArgs (), AspectUtils.getParams (point)),
+                ShardingKeyFactory.getShardingKeyFactory (point.getArgs (), AspectUtils.getParams (point)),
+                AspectUtils.getDeclaringClassAnnotation (point, RocketMessage.class),
+                AspectUtils.getAnnotation (point, TransactionMessage.class),
+                point.proceed (),
+                consumerContainer,
+                threadPoolExecutor,
+                applicationContext);
+    }
 
-	@Override
-	public void setApplicationContext(@Nonnull ApplicationContext applicationContext) {
-		this.applicationContext = applicationContext;
-	}
+    @Override
+    public void setApplicationContext(@Nonnull ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 }

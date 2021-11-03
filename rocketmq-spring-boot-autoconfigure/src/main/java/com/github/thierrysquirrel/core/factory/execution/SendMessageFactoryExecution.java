@@ -39,26 +39,28 @@ import java.util.Map;
 public class SendMessageFactoryExecution extends AbstractSendMessageThread {
 
 
-	public SendMessageFactoryExecution(Long startDeliverTime, Map<String, Object> consumerContainer, RocketMessage rocketMessage, Object message, byte[] bytes, ApplicationContext applicationContext) {
-		super(startDeliverTime,consumerContainer, rocketMessage, message, bytes, applicationContext);
-	}
+    public SendMessageFactoryExecution(Long startDeliverTime, String shardingKeyFactory, Map<String, Object> consumerContainer, RocketMessage rocketMessage, Object message, byte[] bytes, ApplicationContext applicationContext) {
+        super (startDeliverTime, shardingKeyFactory, consumerContainer, rocketMessage, message, bytes, applicationContext);
+    }
 
-	/**
-	 * 开始发送消息
-	 * @param startDeliverTime   startDeliverTime
-	 * @param consumerContainer  consumerContainer
-	 * @param rocketMessage      rocketMessage
-	 * @param message            message
-	 * @param bytes              bytes
-	 * @param applicationContext applicationContext
-	 */
-	@Override
-	protected void statsSendMessage(Long startDeliverTime,Map<String, Object> consumerContainer, RocketMessage rocketMessage, Object message, byte[] bytes, ApplicationContext applicationContext) {
-		try {
-			ProducerStrategy.statsSendMessage(startDeliverTime,consumerContainer, rocketMessage, message, bytes, applicationContext);
-		} catch (RocketException e) {
-			log.error("statsSendMessage Error", e);
-		}
-	}
+    /**
+     * 开始发送消息
+     *
+     * @param startDeliverTime   startDeliverTime
+     * @param shardingKeyFactory shardingKeyFactory
+     * @param consumerContainer  consumerContainer
+     * @param rocketMessage      rocketMessage
+     * @param message            message
+     * @param bytes              bytes
+     * @param applicationContext applicationContext
+     */
+    @Override
+    protected void statsSendMessage(Long startDeliverTime, String shardingKeyFactory, Map<String, Object> consumerContainer, RocketMessage rocketMessage, Object message, byte[] bytes, ApplicationContext applicationContext) {
+        try {
+            ProducerStrategy.statsSendMessage (startDeliverTime, shardingKeyFactory,consumerContainer, rocketMessage, message, bytes, applicationContext);
+        } catch (RocketException e) {
+            log.error ("statsSendMessage Error", e);
+        }
+    }
 }
 

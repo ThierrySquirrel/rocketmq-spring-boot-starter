@@ -39,26 +39,26 @@ import java.util.Map;
  * @since JDK 1.8
  */
 public class ProducerStrategy {
-	private ProducerStrategy() {
-	}
+    private ProducerStrategy() {
+    }
 
-	public static void statsSendMessage(Long startDeliverTime, Map<String, Object> consumerContainer, RocketMessage rocketMessage, Object message, byte[] bytes, ApplicationContext applicationContex) throws RocketException {
-		if (message instanceof CommonMessage) {
-			CommonMessage commonMessage = (CommonMessage) message;
-			Producer producer = ProducerConsumerFactory.getProducer(consumerContainer, rocketMessage, commonMessage);
-			SendMessageFactory.sendMessage(startDeliverTime,producer, commonMessage, bytes, applicationContex);
-			return;
-		}
-		if (message instanceof OrderMessage) {
-			OrderMessage orderMessage = (OrderMessage) message;
-			OrderProducer orderProducer = ProducerConsumerFactory.getProducer(consumerContainer, rocketMessage, orderMessage);
-			SendMessageFactory.sendMessage(orderProducer, orderMessage, bytes);
-			return;
-		}
-		if (message instanceof TransactionMessage) {
-			TransactionMessage transactionMessage = (TransactionMessage) message;
-			TransactionProducer transactionProducer = ProducerConsumerFactory.getProducer(consumerContainer, rocketMessage, transactionMessage);
-			SendMessageFactory.sendMessage(transactionProducer, transactionMessage, bytes, applicationContex);
-		}
-	}
+    public static void statsSendMessage(Long startDeliverTime, String shardingKeyFactory, Map<String, Object> consumerContainer, RocketMessage rocketMessage, Object message, byte[] bytes, ApplicationContext applicationContex) throws RocketException {
+        if (message instanceof CommonMessage) {
+            CommonMessage commonMessage = (CommonMessage) message;
+            Producer producer = ProducerConsumerFactory.getProducer (consumerContainer, rocketMessage, commonMessage);
+            SendMessageFactory.sendMessage (startDeliverTime, producer, commonMessage, bytes, applicationContex);
+            return;
+        }
+        if (message instanceof OrderMessage) {
+            OrderMessage orderMessage = (OrderMessage) message;
+            OrderProducer orderProducer = ProducerConsumerFactory.getProducer (consumerContainer, rocketMessage, orderMessage);
+            SendMessageFactory.sendMessage (orderProducer, orderMessage, bytes, shardingKeyFactory);
+            return;
+        }
+        if (message instanceof TransactionMessage) {
+            TransactionMessage transactionMessage = (TransactionMessage) message;
+            TransactionProducer transactionProducer = ProducerConsumerFactory.getProducer (consumerContainer, rocketMessage, transactionMessage);
+            SendMessageFactory.sendMessage (transactionProducer, transactionMessage, bytes, applicationContex);
+        }
+    }
 }

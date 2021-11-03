@@ -32,40 +32,43 @@ import java.util.Map;
  */
 @Data
 public abstract class AbstractSendMessageThread implements Runnable {
-	private Long startDeliverTime;
-	private Map<String, Object> consumerContainer;
-	private RocketMessage rocketMessage;
-	private Object message;
-	private byte[] bytes;
-	private ApplicationContext applicationContext;
+    private Long startDeliverTime;
+    private String shardingKeyFactory;
+    private Map<String, Object> consumerContainer;
+    private RocketMessage rocketMessage;
+    private Object message;
+    private byte[] bytes;
+    private ApplicationContext applicationContext;
 
-	public AbstractSendMessageThread(Long startDeliverTime, Map<String, Object> consumerContainer, RocketMessage rocketMessage, Object message, byte[] bytes, ApplicationContext applicationContext) {
-		this.startDeliverTime = startDeliverTime;
-		this.consumerContainer = consumerContainer;
-		this.rocketMessage = rocketMessage;
-		this.message = message;
-		this.bytes = bytes;
-		this.applicationContext = applicationContext;
-	}
+    public AbstractSendMessageThread(Long startDeliverTime, String shardingKeyFactory, Map<String, Object> consumerContainer, RocketMessage rocketMessage, Object message, byte[] bytes, ApplicationContext applicationContext) {
+        this.startDeliverTime = startDeliverTime;
+        this.shardingKeyFactory = shardingKeyFactory;
+        this.consumerContainer = consumerContainer;
+        this.rocketMessage = rocketMessage;
+        this.message = message;
+        this.bytes = bytes;
+        this.applicationContext = applicationContext;
+    }
 
-	/**
-	 * 开始发送消息
-	 *
-	 * @param startDeliverTime   startDeliverTime
-	 * @param consumerContainer  consumerContainer
-	 * @param rocketMessage      rocketMessage
-	 * @param message            message
-	 * @param bytes              bytes
-	 * @param applicationContext applicationContext
-	 */
-	protected abstract void statsSendMessage(Long startDeliverTime, Map<String, Object> consumerContainer, RocketMessage rocketMessage, Object message, byte[] bytes, ApplicationContext applicationContext);
+    /**
+     * 开始发送消息
+     *
+     * @param startDeliverTime   startDeliverTime
+     * @param shardingKeyFactory shardingKeyFactory
+     * @param consumerContainer  consumerContainer
+     * @param rocketMessage      rocketMessage
+     * @param message            message
+     * @param bytes              bytes
+     * @param applicationContext applicationContext
+     */
+    protected abstract void statsSendMessage(Long startDeliverTime, String shardingKeyFactory, Map<String, Object> consumerContainer, RocketMessage rocketMessage, Object message, byte[] bytes, ApplicationContext applicationContext);
 
-	@Override
-	public void run() {
-		statsSendMessage(startDeliverTime, consumerContainer,
-				rocketMessage,
-				message,
-				bytes,
-				applicationContext);
-	}
+    @Override
+    public void run() {
+        statsSendMessage (startDeliverTime, shardingKeyFactory, consumerContainer,
+                rocketMessage,
+                message,
+                bytes,
+                applicationContext);
+    }
 }

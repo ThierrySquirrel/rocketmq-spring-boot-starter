@@ -49,10 +49,9 @@ public class SendMessageFactory {
 
     }
 
-    public static void sendMessage(OrderProducer orderProducer, OrderMessage orderMessage, byte[] bytes) {
+    public static void sendMessage(OrderProducer orderProducer, OrderMessage orderMessage, byte[] bytes, String shardingKeyFactory) {
         Message message = MessageFactory.createMessage (orderMessage, bytes);
-        orderProducer.send (message, orderMessage.shardingKey ());
-
+        orderProducer.send (message, shardingKeyFactory);
     }
 
     public static void sendMessage(TransactionProducer transactionProducer, TransactionMessage transactionMessage, byte[] bytes, ApplicationContext applicationContext) {

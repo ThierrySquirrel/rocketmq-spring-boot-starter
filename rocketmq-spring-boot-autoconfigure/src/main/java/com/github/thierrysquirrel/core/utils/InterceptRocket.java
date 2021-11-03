@@ -35,14 +35,14 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @since JDK 1.8
  */
 public class InterceptRocket {
-	private InterceptRocket() {
-	}
+    private InterceptRocket() {
+    }
 
-	public static <T extends Annotation> Object intercept(Long startDeliverTime, RocketMessage rocketMessage, T annotation, Object proceed, Map<String, Object> consumerContainer, ThreadPoolExecutor threadPoolExecutor, ApplicationContext applicationContext) {
-		RocketSerializer mqSerializer = applicationContext.getBean(RocketSerializer.class);
-		byte[] body = mqSerializer.serialize(proceed);
+    public static <T extends Annotation> Object intercept(Long startDeliverTime, String shardingKeyFactory, RocketMessage rocketMessage, T annotation, Object proceed, Map<String, Object> consumerContainer, ThreadPoolExecutor threadPoolExecutor, ApplicationContext applicationContext) {
+        RocketSerializer mqSerializer = applicationContext.getBean (RocketSerializer.class);
+        byte[] body = mqSerializer.serialize (proceed);
 
-		ThreadPoolExecutorExecution.statsThread(threadPoolExecutor, new SendMessageFactoryExecution(startDeliverTime,consumerContainer, rocketMessage, annotation, body, applicationContext));
-		return proceed;
-	}
+        ThreadPoolExecutorExecution.statsThread (threadPoolExecutor, new SendMessageFactoryExecution (startDeliverTime, shardingKeyFactory, consumerContainer, rocketMessage, annotation, body, applicationContext));
+        return proceed;
+    }
 }

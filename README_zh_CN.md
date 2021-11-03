@@ -49,7 +49,7 @@
         <dependency>
             <artifactId>rocketmq-spring-boot-starter</artifactId>
             <groupId>com.github.thierrysquirrel</groupId>
-            <version>2.3.0.8-RELEASE</version>
+            <version>2.3.1.0-RELEASE</version>
         </dependency>
 ```
  ### 配置文件
@@ -102,7 +102,7 @@ public class Common {
 public class Order {
     @GetMapping("/order")
     @OrderMessage(topic = "order",tag = "order")
-    public String order() {
+    public String order(@RequestParam @ShardingKey String shardingKey) {
         return "order";
     }
 }

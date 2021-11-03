@@ -9,4 +9,4 @@ ${AnsiColor.BRIGHT_GREEN}
      `\       /'
        `-._.-'
           `
-rocket version:2.3.0.8.RELEASE
+rocket version:2.3.1.0.RELEASE

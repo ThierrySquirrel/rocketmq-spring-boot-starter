@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2021 the original author or authors.
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,38 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.github.thierrysquirrel.annotation;
-
 
 import java.lang.annotation.*;
 
 /**
- * ClassName: OrderMessage
+ * Classname: ShardingKey
  * Description:
- * date: 2019/4/27 21:36
+ * Date: 2021/11/3 19:57
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK 11
  */
-@Target(ElementType.METHOD)
+@Target({ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-@Inherited
 @Documented
-public @interface OrderMessage {
-    /**
-     * Message 所属的 Topic
-     *
-     * @return String
-     */
-    String topic() default "";
-
-    /**
-     * 订阅指定 Topic 下的 Tags：
-     * 1. * 表示订阅所有消息
-     * 2. TagA || TagB || TagC 表示订阅 TagA 或 TagB 或 TagC 的消息
-     *
-     * @return String
-     */
-    String tag() default "*";
+@Inherited
+public @interface ShardingKey {
 }
