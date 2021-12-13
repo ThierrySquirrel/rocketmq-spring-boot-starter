@@ -7,7 +7,7 @@
     <groupId>com.github.thierrysquirrel</groupId>
     <artifactId>rocketmq-spring-boot</artifactId>
     <packaging>pom</packaging>
-    <version>2.3.1.1-RELEASE</version>
+    <version>2.3.1.2-RELEASE</version>
 
     <name>rocketmq-spring-boot</name>
     <description>rocketmq-spring-boot</description>
@@ -16,7 +16,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.0</version>
+        <version>2.6.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <modules>
@@ -26,7 +26,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <spring-cloud.version>2020.0.4</spring-cloud.version>
+        <spring-cloud.version>2021.0.0</spring-cloud.version>
         <ons-client.version>1.8.8.1.Final</ons-client.version>
         <guava.version>31.0.1-jre</guava.version>
         <protostuff-runtime.version>1.7.4</protostuff-runtime.version>
