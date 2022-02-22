@@ -14,6 +14,13 @@ Since the author registered GitHub, so far, he hasn't made a penny.
 Anyone who charges for the author's project is cheating you.  
 If you are cheated, I hope you can get the help of a lawyer. Good luck.  
 
+IMPORTANT: The author is currently living in a miserable situation with no income and is running out of money.  
+The project still follows the [Apache2.0 License](http://www.apache.org/licenses/)  
+If the author has no money to eat, the author cannot update the project for everyone for free in a place without Internet and life.  
+The author is now accepting donations, thank you for your support.  
+The time to start accepting donations is when this text is currently updated.  
+[Donate](https://www.paypal.com/paypalme/thierrysquirrel)  
+
 Support function:
 
 - [x] Three modes of sending ordinary messages: synchronous, asynchronous and one-way
