@@ -21,6 +21,11 @@ The author is now accepting donations, thank you for your support.
 The time to start accepting donations is when this text is currently updated.  
 [Donate](https://www.paypal.com/paypalme/thierrysquirrel)  
 
+IMPORTANT: This project is now out of maintenance, as the author needs to pay to maintain the commercial version while maintaining the project.  
+We spent money maintaining a commercial version today, but couldn't use the product.  
+We have decided to suspend the maintenance or update of all Ali products.  
+Maintainers of open source projects don't pay entrepreneurs to work for free because they disable your account.  
+
 Support function:
 
 - [x] Three modes of sending ordinary messages: synchronous, asynchronous and one-way
