@@ -26,6 +26,10 @@ We spent money maintaining a commercial version today, but couldn't use the prod
 We have decided to suspend the maintenance or update of all Ali products.  
 Maintainers of open source projects don't pay entrepreneurs to work for free because they disable your account.  
 
+IMPORTANT: Ali decided to sanction me, today I received a text message, he forced me to pay for maintaining Ali products.  
+I paid what I needed to pay yesterday, which is to maintain the Ali product, and then canceled the paid product, but I was sanctioned anyway, and now I have to pay more.  
+Good luck to everyone, don't be sanctioned by Ali.  
+
 Support function:
 
 - [x] Three modes of sending ordinary messages: synchronous, asynchronous and one-way
