@@ -240,3 +240,6 @@ public class JacksonSerializer implements RocketSerializer {
 @CommonMessage callback指定class
 
 @TransactionMessage checker与executer 指定class
+
+![AmericanFlag](https://user-images.githubusercontent.com/49895274/184470801-86f615b1-1b69-4d0c-ad68-41c84549ec40.jpeg)  
+
