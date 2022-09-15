@@ -241,5 +241,5 @@ public class JacksonSerializer implements RocketSerializer {
 
 @TransactionMessage checker与executer 指定class
 
-![AmericanFlag](https://user-images.githubusercontent.com/49895274/184470801-86f615b1-1b69-4d0c-ad68-41c84549ec40.jpeg)  
+![Russian flag](https://user-images.githubusercontent.com/49895274/190371835-77583223-04b0-49d2-a9b7-22ff47cae317.png)
 
