@@ -28,7 +28,7 @@
         <java.version>11</java.version>
         <spring-cloud.version>2021.0.0</spring-cloud.version>
         <ons-client.version>1.8.8.1.Final</ons-client.version>
-        <guava.version>31.0.1-jre</guava.version>
+        <guava.version>32.0.0-jre</guava.version>
         <protostuff-runtime.version>1.7.4</protostuff-runtime.version>
         <protostuff-core.version>1.7.4</protostuff-core.version>
         <maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
