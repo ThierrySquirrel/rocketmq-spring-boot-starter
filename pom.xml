@@ -7,7 +7,7 @@
     <groupId>io.github.thierrysquirrel</groupId>
     <artifactId>rocketmq-spring-boot</artifactId>
     <packaging>pom</packaging>
-    <version>2.5.0.2-RELEASE</version>
+    <version>2.5.0.3-RELEASE</version>
 
     <name>rocketmq-spring-boot</name>
     <description>rocketmq-spring-boot</description>
@@ -19,14 +19,14 @@
     </modules>
 
     <properties>
-        <java.version>21</java.version>
-        <spring-boot-starter.version>4.0.2</spring-boot-starter.version>
-        <logback-classic.version>1.5.26</logback-classic.version>
-        <logback-core.version>1.5.26</logback-core.version>
+        <java.version>25</java.version>
+        <spring-boot-starter.version>4.0.6</spring-boot-starter.version>
+        <logback-classic.version>1.5.34</logback-classic.version>
+        <logback-core.version>1.5.34</logback-core.version>
         <ons-client.version>1.9.6.Final</ons-client.version>
-        <guava.version>33.5.0-jre</guava.version>
-        <json.version>1.0.0.0-RELEASE</json.version>
-        <maven-compiler-plugin.version>3.14.1</maven-compiler-plugin.version>
+        <guava.version>33.6.0-jre</guava.version>
+        <json.version>1.0.0.2-RELEASE</json.version>
+        <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
         <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
         <central-publishing-maven-plugin.version>0.10.0</central-publishing-maven-plugin.version>
@@ -34,16 +34,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter</artifactId>
-                <version>${spring-boot-starter.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-autoconfigure</artifactId>
-                <version>${spring-boot-starter.version}</version>
-            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-configuration-processor</artifactId>
@@ -133,6 +123,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>${maven-javadoc-plugin.version}</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>

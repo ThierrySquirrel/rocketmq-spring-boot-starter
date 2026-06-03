@@ -1,5 +1,5 @@
 /**
- * Copyright 2021 the original author or authors.
+ * Copyright 2026/6/4 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 package io.github.thierrysquirrel.rocketmq.core.factory;
 
 import io.github.thierrysquirrel.rocketmq.annotation.ShardingKey;
@@ -23,10 +23,10 @@ import java.lang.reflect.Parameter;
 /**
  * Classname: ShardingKeyFactory
  * Description:
- * Date: 2021/11/3 20:00
+ * Date: 2026/6/4
  *
  * @author ThierrySquirrel
- * @since JDK 11
+ * @since JDK 25
  */
 public class ShardingKeyFactory {
     private ShardingKeyFactory() {

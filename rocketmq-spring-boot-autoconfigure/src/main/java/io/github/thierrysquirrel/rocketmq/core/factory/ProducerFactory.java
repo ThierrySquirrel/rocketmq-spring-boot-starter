@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2026/6/4 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 
 package io.github.thierrysquirrel.rocketmq.core.factory;
 
@@ -30,27 +30,27 @@ import java.util.Properties;
 /**
  * ClassName: ProducerFactory
  * Description:
- * date: 2019/4/28 21:35
+ * date: 2026/6/4
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK 25
  */
 public class ProducerFactory {
     private ProducerFactory() {
     }
 
-    public static Producer createProducer(RocketMessage rocketMessage, RocketProperties rocketProperties) {
-        Properties properties = ProducerPropertiesFactory.createProducerProperties(rocketMessage, rocketProperties);
+    public static Producer createProducer(String groupId, RocketProperties rocketProperties) {
+        Properties properties = ProducerPropertiesFactory.createProducerProperties(groupId, rocketProperties);
         return ONSFactory.createProducer(properties);
     }
 
-    public static OrderProducer createOrderProducer(RocketMessage rocketMessage, RocketProperties rocketProperties) {
-        Properties properties = ProducerPropertiesFactory.createProducerProperties(rocketMessage, rocketProperties);
+    public static OrderProducer createOrderProducer(String groupId, RocketProperties rocketProperties) {
+        Properties properties = ProducerPropertiesFactory.createProducerProperties(groupId, rocketProperties);
         return ONSFactory.createOrderProducer(properties);
     }
 
-    public static TransactionProducer createTransactionProducer(RocketMessage rocketMessage, RocketProperties rocketProperties, LocalTransactionChecker localTransactionChecker) {
-        Properties properties = ProducerPropertiesFactory.createProducerProperties(rocketMessage, rocketProperties);
+    public static TransactionProducer createTransactionProducer(String groupId, RocketProperties rocketProperties, LocalTransactionChecker localTransactionChecker) {
+        Properties properties = ProducerPropertiesFactory.createProducerProperties(groupId, rocketProperties);
         properties.put(PropertyKeyConst.CheckImmunityTimeInSeconds, rocketProperties.getCheckImmunityTimeInSeconds());
         return ONSFactory.createTransactionProducer(properties, localTransactionChecker);
     }

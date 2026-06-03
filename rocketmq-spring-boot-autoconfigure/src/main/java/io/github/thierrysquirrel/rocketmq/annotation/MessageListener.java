@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2026/6/4 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,10 +12,11 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 
 package io.github.thierrysquirrel.rocketmq.annotation;
 
+import com.aliyun.openservices.ons.api.PropertyValueConst;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.*;
@@ -23,10 +24,10 @@ import java.lang.annotation.*;
 /**
  * ClassName: MessageListener
  * Description:
- * date: 2019/4/26 22:37
+ * date: 2026/6/4
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK 25
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
@@ -34,6 +35,20 @@ import java.lang.annotation.*;
 @Documented
 @Component
 public @interface MessageListener {
+    /**
+     * 您在控制台创建的 Group ID
+     *
+     * @return String
+     */
+    String groupId() default "";
+
+    /**
+     * 消费模式，默认集群消费
+     *
+     * @return String
+     */
+    String messageModel() default PropertyValueConst.CLUSTERING;
+
     /**
      * Message 所属的 Topic
      *

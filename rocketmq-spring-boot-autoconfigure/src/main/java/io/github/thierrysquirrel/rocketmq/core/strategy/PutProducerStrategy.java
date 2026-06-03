@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2026/6/4 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 
 package io.github.thierrysquirrel.rocketmq.core.strategy;
 
@@ -37,10 +37,10 @@ import java.util.concurrent.ThreadPoolExecutor;
 /**
  * ClassName: PutProducerStrategy
  * Description:
- * date: 2019/5/3 18:37
+ * date: 2026/6/4
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK 25
  */
 public class PutProducerStrategy {
     private PutProducerStrategy() {
@@ -50,7 +50,7 @@ public class PutProducerStrategy {
         if (bean instanceof CommonMessage) {
             CommonMessage commonMessage = (CommonMessage) bean;
             String producerConsumerKey = ProducerConsumerFactory.getProducerConsumerKey(rocketMessage, commonMessage);
-            Producer producer = ProducerFactory.createProducer(rocketMessage, rocketProperties);
+            Producer producer = ProducerFactory.createProducer(commonMessage.groupId(), rocketProperties);
             ThreadPoolExecutor callbackThreadPoolExecutor = ThreadPoolFactory.createCallbackThreadPoolExecutor(rocketProperties);
             producer.start();
             producer.setCallbackExecutor(callbackThreadPoolExecutor);
@@ -60,7 +60,7 @@ public class PutProducerStrategy {
         if (bean instanceof OrderMessage) {
             OrderMessage orderMessage = (OrderMessage) bean;
             String producerConsumerKey = ProducerConsumerFactory.getProducerConsumerKey(rocketMessage, orderMessage);
-            OrderProducer orderProducer = ProducerFactory.createOrderProducer(rocketMessage, rocketProperties);
+            OrderProducer orderProducer = ProducerFactory.createOrderProducer(orderMessage.groupId(), rocketProperties);
             orderProducer.start();
             producerConsumer.put(producerConsumerKey, orderProducer);
             return;
@@ -69,7 +69,7 @@ public class PutProducerStrategy {
             TransactionMessage transactionMessage = (TransactionMessage) bean;
             String producerConsumerKey = ProducerConsumerFactory.getProducerConsumerKey(rocketMessage, transactionMessage);
             LocalTransactionChecker localTransactionChecker = ApplicationContextUtils.getLocalTransactionChecker(applicationContext, transactionMessage.transactionStatus(), transactionMessage.checker());
-            TransactionProducer transactionProducer = ProducerFactory.createTransactionProducer(rocketMessage, rocketProperties, localTransactionChecker);
+            TransactionProducer transactionProducer = ProducerFactory.createTransactionProducer(transactionMessage.groupId(), rocketProperties, localTransactionChecker);
             transactionProducer.start();
             producerConsumer.put(producerConsumerKey, transactionProducer);
         }

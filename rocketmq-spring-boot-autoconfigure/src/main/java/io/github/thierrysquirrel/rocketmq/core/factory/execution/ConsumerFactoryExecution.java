@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2026/6/4 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 
 package io.github.thierrysquirrel.rocketmq.core.factory.execution;
 
@@ -35,10 +35,10 @@ import java.util.Properties;
 /**
  * ClassName: ConsumerFactoryExecution
  * Description:
- * date: 2019/4/27 16:05
+ * date: 2026/6/4
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK 25
  */
 public class ConsumerFactoryExecution extends AbstractConsumerThread {
 
@@ -53,7 +53,7 @@ public class ConsumerFactoryExecution extends AbstractConsumerThread {
                               MessageListener consumerListener,
                               MethodFactoryExecution methodFactoryExecution) {
 
-        Properties properties = ConsumerPropertiesFactory.createConsumerProperties(rocketProperties, rocketListener);
+        Properties properties = ConsumerPropertiesFactory.createConsumerProperties(rocketProperties, consumerListener);
         if (consumerListener.orderConsumer()) {
             properties.put(PropertyKeyConst.SuspendTimeMillis, rocketProperties.getSuspendTimeMilli());
             OrderConsumer orderConsumer = ConsumerFactory.createOrderConsumer(properties);
