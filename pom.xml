@@ -22,7 +22,7 @@
         <java.version>25</java.version>
         <spring-boot-starter.version>4.0.6</spring-boot-starter.version>
         <logback-classic.version>1.5.34</logback-classic.version>
-        <logback-core.version>1.5.34</logback-core.version>
+        <logback-core.version>1.5.35</logback-core.version>
         <ons-client.version>1.9.6.Final</ons-client.version>
         <guava.version>33.6.0-jre</guava.version>
         <json.version>1.0.0.2-RELEASE</json.version>
